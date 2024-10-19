@@ -1,0 +1,84 @@
+#format = """
+#[╭─usr─❯](bold blue) $username(bold yellow)$hostname
+#[┣─dir─❯](bold red) $directory$rust$git_branch$git_status$package$golang$terraform$docker_context$python$docker_context$nodejs
+#[╰─❯](bold green)
+#"""
+format = """
+$username\
+$hostname via  \
+$directory\
+$shlvl\
+$cmd_duration\
+$fill\
+$time\
+$line_break\
+$character
+"""
+
+[username]
+style_user = "blue bold"
+style_root = "red bold"
+format = "[](bold red)[ $user]($style) "
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '∈ [$hostname](bold yellow)'
+trim_at = "."
+disabled = false
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[╰──❯](bold green)" # The "success_symbol" is set to "➜" with color "bold green"
+error_symbol =   "[╰──𐌗](bold red)"
+
+# configure directory
+[directory]
+read_only = " 🔒"
+#truncation_length = 10
+truncate_to_repo = false # truncates directory to root folder if in github repo
+style = "bold italic blue"
+truncation_symbol = "…/"
+
+[shlvl]
+disabled = false
+threshold = 2
+symbol = "⇅ "
+
+
+[shell]
+disabled = false
+bash_indicator = ""
+
+[os]
+disabled = false
+format = "$symbol "
+symbols.Ubuntu = " "
+symbols.Windows = ""
+ 
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+disabled = false
+style = "bold italic purple"
+
+[time]
+disabled = false
+time_format = "%R" # Hour:Minute Format
+style = "fg:#c5c8c6"
+format = '[ $time ]($style)'
+
+[python]
+symbol = "🐍 "
+#pyenv_version_name = true
+format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
+style = "bold yellow"
+pyenv_prefix = "venv "
+python_binary = ["./venv/bin/python", "python", "python3", "python2"]
+detect_extensions = ["py"]
+version_format = "v${raw}"
+
+[fill]
+symbol = '─'
+style = 'bold green'
